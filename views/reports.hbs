@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отчеты</title>
+    <meta charset="utf-8" />
+	<style>
+		p {margin-right: 15px;}
+		.tg  {
+			border-collapse:collapse;
+			border-spacing:0;
+			text-align:center;
+		}
+		.tg td{
+			border:black solid 1px;
+			overflow:hidden;
+			padding:10px 5px;
+			word-break:normal;
+			text-align: center;
+		}	
+		.tg th{
+			border:black solid 1px;
+			font-weight:normal;
+			overflow:hidden;
+			padding:10px 5px;
+			word-break:normal;
+		}
+		body {padding-bottom: 100px;}
+	</style>
+</head>
+<body>
+    <h1>Отчеты</h1>
+    <table>
+        <tr>
+            <td>
+                <p><a href="/counterparties">Контрагенты</a></p>
+            </td>
+            <td>
+                <p><a href="/nomenclature">Номенклатура</a></p>
+            </td>
+            <td>
+                <p><a href="/deliveries">Поставки</a></p>
+            </td>
+            <td>
+                <p><a href="/sales">Продажи</a></p>
+            </td>
+			<td>
+                <p>Отчеты</p>
+            </td>
+        </tr>
+    </table>
+
+		<h3>Отчеты за период:</h3>
+		<form method="POST" >
+			<input name="report_movements" value="true" type="hidden"/>
+			<label>С даты</label>
+			<input name="start_date" type="date"/>
+			<br><br>
+			<label>по дату</label>
+			<input name="end_date" type="date"/>
+			<br><br>
+			<button type="submit">Получить</button>
+		</form>
+		<br><br>
+		<p style="text-align: center;">Отчет по движениям товаров за период {{start_date}} - {{end_date}}</p>
+		<table class="tg" style="margin: 0 auto;">
+			<thead>
+				<tr>
+					<th  rowspan="2">Номенклатура</th>
+					<th  colspan="2">Начальный остаток</th>
+					<th  colspan="2">Приход</th>
+					<th  colspan="2">Расход</th>
+					<th  colspan="2">Конечный остаток</th>
+				</tr>
+				<tr>
+					<th >Кол-во</th>
+					<th >Сумма</th>
+					<th >Кол-во</th>
+					<th >Сумма</th>
+					<th >Кол-во</th>
+					<th >Сумма</th>
+					<th >Кол-во</th>
+					<th >Сумма</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each movements}}
+				<tr>
+					<td >{{ this.nomenclature }}</td>
+					<td >{{ this.openingQ }}</td>
+					<td >{{ this.openingA }}</td>
+					<td >{{ this.incomeQ }}</td>
+					<td >{{ this.incomeA }}</td>
+					<td >{{ this.outcomeQ }}</td>
+					<td >{{ this.outcomeA }}</td>
+					<td >{{ this.finalQ }}</td>
+					<td >{{ this.finalA }}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<!-- <h3>Отчет по валовой прибыли:</h3>
+		<form method="POST" >
+			<input name="report_gross_profit" value="true" type="hidden"/>
+			<label>С даты</label>
+			<input name="start_date" type="date"/>
+			<br><br>
+			<label>по дату</label>
+			<input name="end_date" type="date"/>
+			<br><br>
+			<button type="submit">Получить</button>
+		</form> -->
+		<br><br>
+		<p style="text-align: center;">Отчет по валовой прибыли за период {{start_date}} - {{end_date}}</p>
+		<table class="tg" style="margin: 0 auto;">
+			<thead>
+				<tr>
+					<th >Номенклатура</th>
+					<th >Количество</th>
+					<th >Сумма продажи</th>
+					<th >Себестоимость</th>
+					<th >Прибыль</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each gross}}
+				<tr>
+					<td >{{ this.nomenclature }}</td>
+					<td >{{ this.sold }}</td>
+					<td >{{ this.amount }}</td>
+					<td >{{ this.costPrice }}</td>
+					<td >{{ this.profit }}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+</body>
+<html>

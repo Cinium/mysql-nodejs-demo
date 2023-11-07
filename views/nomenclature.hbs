@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Номенклатура</title>
+    <meta charset="utf-8" />
+	<style>
+		td {text-align: center;}
+		p {margin-right: 15px;}
+		th {padding: 10px;}
+	</style>
+</head>
+<body>
+    <h1>Номенклатура</h1>
+    <table>
+            <tr>
+                <td>
+                    <p><a href="/counterparties">Контрагенты</a></p>
+                </td>
+                <td>
+                    <p>Номенклатура</p>
+                </td>
+                <td>
+                    <p><a href="/deliveries">Поставки</a></p>
+                </td>
+                <td>
+                    <p><a href="/sales">Продажи</a></p>
+                </td>
+				<td>
+                    <p><a href="/reports">Отчеты</a></p>
+                </td>
+            </tr>
+        </table>
+
+		<h3>Добавить:</h3>
+		<form method="POST">
+			<label>Имя</label>
+			<input name="name" class="field"/>
+			<br><br>
+			<label>Количество</label>
+			<input name="quantity" type="number"/>
+			<button type="submit">Отправить</button>
+		</form>
+		<br><br>
+		<table>
+			<tr><th>id</th><th>Имя</th><th>Кол-во</th></tr>
+			{{#each nomenclature}}
+				<tr>
+					<td>{{this.id}}</td>
+					<td>{{this.nomenclature_name}}</td>
+					<td>{{this.quantity}}</td>
+				</tr>
+			{{/each}}
+		</table>
+</body>
+<html>

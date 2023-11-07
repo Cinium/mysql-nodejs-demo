@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Контрагенты</title>
+    <meta charset="utf-8" />
+	<style>
+		th {padding: 10px;}
+		td {text-align: center;}
+		p {margin-right: 15px;}
+	</style>
+</head>
+<body>
+    <h1>Контрагенты</h1>
+    <table>
+            <tr>
+                <td>
+                    <p>Контрагенты</p>
+                </td>
+                <td>
+                    <p><a href="/nomenclature">Номенклатура</a></p>
+                </td>
+                <td>
+                    <p><a href="/deliveries">Поставки</a></p>
+                </td>
+                <td>
+                    <p><a href="/sales">Продажи</a></p>
+                </td>
+				<td>
+                    <p><a href="/reports">Отчеты</a></p>
+                </td>
+            </tr>
+        </table>
+
+		<h3>Добавить:</h3>
+		<form method="POST">
+			<label>Имя</label>
+			<input name="name" class="field"/>
+			<button type="submit">Отправить</button>
+		</form>
+		<br><br>
+		<table>
+			<tr><th>id</th><th>Имя</th><th></th></tr>
+			{{#each counterparties}}
+				<tr>
+					<td>{{this.id}}</td>
+					<td>{{this.counterparty_name}}</td>
+				</tr>
+			{{/each}}
+		</table>
+</body>
+<html>

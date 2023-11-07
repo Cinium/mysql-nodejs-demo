@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поставки</title>
+    <meta charset="utf-8" />
+	<style>
+		td {text-align: center;}
+		p {margin-right: 15px;}
+		th {padding: 10px;}
+	</style>
+</head>
+<body>
+    <h1>Поставки</h1>
+    <table>
+            <tr>
+                <td>
+                    <p><a href="/counterparties">Контрагенты</a></p>
+                </td>
+                <td>
+                    <p><a href="/nomenclature">Номенклатура</a></p>
+                </td>
+                <td>
+                    <p>Поставки</p>
+                </td>
+                <td>
+                    <p><a href="/sales">Продажи</a></p>
+                </td>
+				<td>
+                    <p><a href="/reports">Отчеты</a></p>
+                </td>
+            </tr>
+        </table>
+
+		<h3>Добавить приход:</h3>
+		<form method="POST">
+			<label>Поставщик</label>
+			<input name="supplier" class="field"/>
+			<br><br>
+			<label>Товар</label>
+			<input name="nomenclature" class="field"/>
+			<br><br>
+			<label>Цена (шт)</label>
+			<input name="price" type="number"/>
+			<label>Сумма</label>
+			<input name="total" type="number"/>
+			<br><br>
+			<label>Количество</label>
+			<input name="quantity" type="number"/>
+			<label>Дата</label>
+			<input name="date" type="date"/>
+			<br><br>
+			<button type="submit">Отправить</button>
+		</form>
+		<br><br>
+		<table>
+			<tr><th>id</th><th>Поставщик</th><th>Товар</th><th>Цена</th><th>Количество</th><th>Сумма поставки</th><th>Дата</th></tr>
+			{{#each deliveries}}
+				<tr>
+					<td>{{this.id}}</td>
+					<td>{{this.supplier_id}}</td>
+					<td>{{this.nomenclature_id}}</td>
+					<td>{{this.nomenclature_price}}</td>
+					<td>{{this.nomenclature_quantity}}</td>
+					<td>{{this.total_price}}</td>
+					<td>{{this.delivery_date}}</td>
+					<td>
+						<form action="deliveries/{{this.id}}" method="POST" style="display:inline;">
+							<input type="submit" value="Delete" />
+						</form>
+					</td>
+				</tr>
+			{{/each}}
+		</table>
+</body>
+<html>
